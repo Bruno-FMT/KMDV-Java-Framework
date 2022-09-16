@@ -7,7 +7,6 @@ import kmdv.Base.TestBase;
 import kmdv.Common.SeleniumUtil;
 import kmdv.Common.SeleniumUtil.locatorType;
 import kmdv.config.TestNG.Author;
-import pages.SauceLabs.LoginPage;
 
 public class demo2 extends TestBase {
 
@@ -20,6 +19,7 @@ public class demo2 extends TestBase {
 		
 		WebElement Username = selenium.getElement(Locators.get("Username_id"));
 		WebElement password = selenium.findBy_ID("password");
+		
 		selenium.Log(selenium.getLocatorString(Username));
 		Username = selenium.refreshElement(Username);
 		selenium.type(Username, "standard_use");
@@ -30,11 +30,6 @@ public class demo2 extends TestBase {
 		selenium.Log("Direct Login not successfully");
 		selenium.sleep(2);
 
-		selenium.refresh();
-
-		new LoginPage().Login();
-		selenium.sleep(2);
-		selenium.pageScreenShot();
 
 
 	
