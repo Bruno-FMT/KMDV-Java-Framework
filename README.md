@@ -13,7 +13,7 @@
 ```xml
 <dependency>
 	<groupId>org.KMDV</groupId>
-	<artifactId>KMDV-Automation-Framework</artifactId>
+	<artifactId>KMDV-Java-Framework</artifactId>
 	<version>1.0.6</version>
 	<scope>system</scope>
 	<systemPath>${project.basedir}/KMDV Framework.jar</systemPath>
