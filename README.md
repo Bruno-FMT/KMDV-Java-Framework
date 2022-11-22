@@ -2,7 +2,7 @@
 	
 <hr>
 
-> <h5> <a href="https://github.com/VigneshDhakshnamoorthy/KMDV-Automation-Framework/raw/master/KMDV%20Framework.jar"><img src="https://img.shields.io/badge/Download-KMDV%20Framework.jar-red" alt="Download JAR"/></a></h5>
+> <h5> <a href="https://github.com/VigneshDhakshnamoorthy/KMDV-Automation-Framework/raw/master/KMDVFramework.jar"><img src="https://img.shields.io/badge/Download-KMDV%20Framework.jar-red" alt="Download JAR"/></a></h5>
 ```python
 // download KMDVFramework.jar from above link and save in Project folder
 // add that as a dependency
@@ -16,7 +16,7 @@
 	<artifactId>KMDV-Java-Framework</artifactId>
 	<version>1.0.6</version>
 	<scope>system</scope>
-	<systemPath>${project.basedir}/KMDV Framework.jar</systemPath>
+	<systemPath>${project.basedir}/KMDVFramework.jar</systemPath>
 </dependency>
 ```
 > <h5> <a href="/pom.xml">Other dependencies (Link)</a></h5>
