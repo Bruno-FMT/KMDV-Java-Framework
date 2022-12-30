@@ -13,6 +13,8 @@ import org.testng.ITestResult;
 
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.model.ExceptionInfo;
+import com.aventstack.extentreports.model.service.ExceptionInfoService;
 
 import kmdv.Common.BaseUtil;
 
@@ -35,6 +37,8 @@ public class ScreenShot extends BaseUtil {
 		Exetest.fail(exceptionMessage,MediaEntityBuilder.createScreenCaptureFromPath(screenShotLocation.getAbsolutePath()).build());
 
 	}
+	
+	
 
 	public void ExtentSkipShot(WebDriver ScDriver, ITestResult result, ExtentTest Exetest) {
 		String Time = new java.util.Date().getTime() + "";
@@ -130,5 +134,30 @@ public class ScreenShot extends BaseUtil {
 		deleteReportScreenShot();
 		deleteTestOutput();
 	}
+	
+	
+	public void afterMethods(WebDriver ScDriver,ITestResult result, ExtentTest Exetest) {
+		TakesScreenshot scrShot =((TakesScreenshot)ScDriver);
+		String base64img = "data:image/png;base64,"+scrShot.getScreenshotAs(OutputType.BASE64);
 
+		if(result.getStatus() == ITestResult.FAILURE) {
+			Throwable throwable = result.getThrowable();
+			String getErrorMessage = "<strong>"+throwable.toString()+"</strong>";
+			String base64imgA = "<a href=\""+base64img+"\" data-featherlight=\"image\"><span class=\"badge log fail-bg\">Screenshot Click Here</span></a>";
+			
+	        ExceptionInfo exceptionInfo = ExceptionInfoService.createExceptionInfo(throwable);
+	        String stackTrace = "<textarea readonly=\"\" class=\"code-block\">"+exceptionInfo.getStackTrace()+"</textarea>";
+	        Exetest.fail(getErrorMessage+"<br>"+base64imgA+"<br>"+stackTrace);			
+
+
+		}
+		
+		if(result.getStatus() == ITestResult.SUCCESS) {
+			String base64imgA = "<a href=\""+base64img+"\" data-featherlight=\"image\"><span class=\"badge log pass-bg\">Screenshot Click Here</span></a>";
+			Exetest.pass("<strong>Testcase Successfully Completed</strong><br>"+base64imgA);			
+
+		}
+		
+		ScDriver.quit();
+	}
 }
