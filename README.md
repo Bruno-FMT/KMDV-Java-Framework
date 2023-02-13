@@ -175,10 +175,6 @@ Username_id = user-name
 ```java
 public class LoginPage extends PageBase {
 	
-	public LoginPage() {
-		super();
-	}
-
 	@FindBy(id = "password") private WebElement password;
 	@FindBy(id="login-button") private WebElement loginbutton;
 
