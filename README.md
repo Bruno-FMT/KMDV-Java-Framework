@@ -175,7 +175,7 @@ Username_id = user-name
 ```java
 public class LoginPage extends PageBase {
 	
-	@FindBy(id = "password") private WebElement password;
+	private final By password = By.xpath("*//[@id='password']");
 	@FindBy(id="login-button") private WebElement loginbutton;
 
 	public LoginPage Login() {
