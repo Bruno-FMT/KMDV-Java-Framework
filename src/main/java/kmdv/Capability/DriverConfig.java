@@ -3,13 +3,16 @@ package kmdv.Capability;
 import java.net.URL;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Reporter;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import kmdv.Common.BaseUtil;
 import kmdv.Data.PropertiesUtil;
 
@@ -24,13 +27,12 @@ public class DriverConfig extends BaseUtil {
 			}
 			else {
 				  switch(BrowserName.toLowerCase()){ 
-				  case "firefox" :dov = WebDriverManager.firefoxdriver().create();break;
-				  case "chrome" :dov = WebDriverManager.chromedriver().create();break;
-				  case "edge" :dov = WebDriverManager.edgedriver().create();break;
-				  case "opera" :dov = WebDriverManager.operadriver().create();break;
-				  case "safari" :dov = WebDriverManager.safaridriver().create();break;
-				  case "firefoxheadless" :FirefoxOptions firefoxOptions = new FirefoxOptions();firefoxOptions.setHeadless(true);dov = WebDriverManager.firefoxdriver().capabilities(firefoxOptions).create();break;
-				  case "chromeheadless" :ChromeOptions chromeOptions = new ChromeOptions();chromeOptions.setHeadless(true);dov = WebDriverManager.chromedriver().capabilities(chromeOptions).create();break;
+				  case "firefox" :dov = new FirefoxDriver();break;
+				  case "chrome" :dov = new ChromeDriver();break;
+				  case "edge" :dov = new EdgeDriver();break;
+				  case "safari" :dov = new SafariDriver();break;
+				  case "firefoxheadless" :FirefoxOptions firefoxOptions = new FirefoxOptions();firefoxOptions.addArguments("-headless");dov = new FirefoxDriver(firefoxOptions);break;
+				  case "chromeheadless" :ChromeOptions chromeOptions = new ChromeOptions();chromeOptions.addArguments("--headless=new");dov = new ChromeDriver(chromeOptions);break;
 				  default:System.out.println("Update Proper BrowserName in File");
 				  }}
 			return dov;
