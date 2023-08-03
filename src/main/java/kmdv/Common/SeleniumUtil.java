@@ -1932,4 +1932,16 @@ public class SeleniumUtil {
 	public boolean StringEquals(String value1, String value2) {
 		return value1.equalsIgnoreCase(value2);
 	}
+
+	public String replaceBetweenDelimiters(String input, String startDelimiter, String endDelimiter, String replacement) {
+    		String regex = Pattern.quote(startDelimiter) + "(.*?)" + Pattern.quote(endDelimiter);
+    		Pattern pattern = Pattern.compile(regex);
+    		Matcher matcher = pattern.matcher(input);
+    
+		    if (matcher.find()) {
+		        return matcher.replaceFirst(Matcher.quoteReplacement(replacement));
+		    }
+		    
+	    	return input;
+	}
 }
