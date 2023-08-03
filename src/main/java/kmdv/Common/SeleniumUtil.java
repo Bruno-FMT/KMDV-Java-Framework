@@ -10,7 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.commons.lang3.RandomUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -1931,5 +1932,17 @@ public class SeleniumUtil {
 
 	public boolean StringEquals(String value1, String value2) {
 		return value1.equalsIgnoreCase(value2);
+	}
+	
+	public String replaceBetweenWords(String stringValue, String startWord, String endWord, String replacement) {
+	    String regex = Pattern.quote(startWord) + "(.*?)" + Pattern.quote(endWord);
+	    Pattern pattern = Pattern.compile(regex);
+	    Matcher matcher = pattern.matcher(stringValue);
+	    
+	    if (matcher.find()) {
+	        return matcher.replaceFirst(Matcher.quoteReplacement(replacement));
+	    }
+	    
+	    return stringValue;
 	}
 }
