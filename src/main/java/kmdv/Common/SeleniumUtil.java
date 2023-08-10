@@ -1933,16 +1933,17 @@ public class SeleniumUtil {
 	public boolean StringEquals(String value1, String value2) {
 		return value1.equalsIgnoreCase(value2);
 	}
-	
-	public String replaceBetweenWords(String stringValue, String startWord, String endWord, String replacement) {
-	    String regex = Pattern.quote(startWord) + "(.*?)" + Pattern.quote(endWord);
-	    Pattern pattern = Pattern.compile(regex);
-	    Matcher matcher = pattern.matcher(stringValue);
-	    
-	    if (matcher.find()) {
-	        return matcher.replaceFirst(Matcher.quoteReplacement(replacement));
-	    }
-	    
-	    return stringValue;
+
+
+	public String replaceBetweenDelimiters(String input, String startDelimiter, String endDelimiter, String replacement) {
+    		String regex = Pattern.quote(startDelimiter) + "(.*?)" + Pattern.quote(endDelimiter);
+    		Pattern pattern = Pattern.compile(regex);
+    		Matcher matcher = pattern.matcher(input);
+    
+		    if (matcher.find()) {
+		        return matcher.replaceFirst(Matcher.quoteReplacement(replacement));
+		    }
+		    
+	    	return input;
 	}
 }
